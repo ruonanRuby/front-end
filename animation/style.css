@@ -1,0 +1,176 @@
+body{
+    background: lightblue;
+}
+
+.container{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin:-300px 0 0 -50px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.square1, .square2, .square3, .square4{
+    border: 1px solid white;
+    border-color: white;
+    width: 100px;
+    height: 100px;
+    margin: 20px 20px 20px 20px;
+    background:pink;
+    box-shadow: 2px 4px 5px white;
+}
+
+p{
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+    padding-top: 20%;
+    text-align: center;
+    text-shadow: 2px 2px 4px #ccc;
+}
+
+.square1{
+    cursor: wait;
+    position: relative;
+    animation: moveShape 8s linear 1s infinite alternate none;
+}
+
+.square1:hover{
+    animation-play-state: paused;
+}
+
+@keyframes moveShape{
+    0%{
+        right: 0px;
+        bottom: 0px;
+    }
+
+    25%{
+        right: 150px;
+        bottom: 0px;
+    }
+
+    50%{
+        right: 150px;
+        bottom: 150px;
+        width: 200px;
+        background: pink;
+        border-radius: 100px / 50px;
+    }
+
+    75%{
+        right: 0px;
+        bottom: 150px;
+
+    }
+
+    100%{
+        right: 0px;
+        bottom: 0px;
+
+    }
+}
+
+.square2{
+    cursor: pointer;
+    transition: 1s, transform 0.5s 0.5s;
+}
+
+.square2:hover{
+    background: salmon;
+    transform: rotate(180deg);
+    border-radius: 50%;
+}
+
+.square3{
+    animation-name: changeBox;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: none;
+}
+
+@keyframes changeBox{
+    30%{
+
+        background: sandybrown;
+    }
+
+    50%{
+        width: 80px;
+        border: 10px solid darkred;
+    }
+
+    70%{
+        border: 20px solid black;
+        background: red;
+    }
+
+    100%{
+        width: 150px;
+        height: 150px;
+        border: 10px solid yellowgreen;
+    }
+}
+
+.square3 p{
+    animation: opacityWord 2s linear 1s infinite alternate;
+}
+
+@keyframes opacityWord{
+    0%{ opacity: 0.2;}
+    50%{ opacity: 0.8;}
+    100%{ opacity: 0;}
+}
+
+.hiddenRun{
+    cursor: pointer;
+}
+
+#mario{
+   animation: drive 5s ease-in-out infinite none;
+}
+
+#mario:hover{
+    animation-play-state: paused;
+}
+@keyframes drive{
+    10%{
+        transform: translateX(130px);
+    }
+    10.5%{
+        transform: translateX(130px) rotate(-90deg);
+    }
+
+    40%{
+        transform: translateX(130px) translateY(-600px) rotate(-90deg);
+    }
+    40.5%{
+        transform: translateX(130px) translateY(-600px) rotate(-180deg);
+    }
+
+    60%{
+        transform: translateX(-130px) translateY(-600px) rotate(-180deg);
+    }
+    60.5%{
+        transform: translateX(-130px) translateY(-600px) rotate(-270deg);
+    }
+    
+    90%{
+        transform: translateX(-130px) translateY(0px) rotate(-270deg);
+
+    }
+    90.5%{
+        transform: translateX(-130px) translateY(0px);
+    }
+
+    100%{
+        transform: translateX(0px) translateY(0px)
+
+    }
+}

@@ -1,0 +1,110 @@
+@media (max-width: 900px) and (min-width:450px ){
+    .container{
+        margin-left: -100px;
+    }
+    .square1, .square3{
+        float: left;
+        width: 100px;
+    }
+
+    .square2{
+        margin-left: 200px;
+        margin-top: -120px;
+    }
+
+    .square4{
+        margin-left: 200px;
+        margin-top: -120px;
+    }
+    #mario{
+
+        animation: drive 7s linear infinite none;
+     }
+    @keyframes drive{
+        10%{
+            transform: translateX(350px);
+        }
+        10.5%{
+            transform: translateX(350px) rotate(-90deg);
+        }
+
+        40%{
+            transform: translateX(350px) translateY(-500px) rotate(-90deg);
+        }
+        40.5%{
+            transform: translateX(350px) translateY(-500px) rotate(-180deg);
+        }
+
+        60%{
+            transform: translateX(-300px) translateY(-500px) rotate(-180deg);
+        }
+        60.5%{
+            transform: translateX(-300px) translateY(-500px) rotate(-270deg);
+        }
+        
+        90%{
+            transform: translateX(-300px) translateY(0px) rotate(-270deg);
+
+        }
+        90.5%{
+            transform: translateX(-300px) translateY(0px);
+        }
+
+        100%{
+            transform: translateX(0px) translateY(0px)
+
+        }
+    }
+    
+}
+
+@media(min-width:900px){
+    .container{
+        margin-left: -20%;
+        top: 0%;
+        margin-top: 30%;
+        flex-direction: row;
+    }
+
+    @keyframes moveShape{
+        0%{
+            right: 0px;
+            bottom: 0px;
+        }
+    
+        25%{
+            right: 200px;
+            bottom: 0px;
+        }
+    
+        50%{
+            right: 200px;
+            bottom: 200px;
+            width: 200px;
+            background: pink;
+            border-radius: 100px / 50px;
+        }
+    
+        75%{
+            right: 0px;
+            bottom: 200px;
+    
+        }
+    
+        100%{
+            right: 0px;
+            bottom: 0px;
+    
+        }
+    }
+    
+
+    @keyframes drive{
+        from{
+            transform: translateX(0px)
+        }
+        to{
+            transform: translateX(500px)
+        }
+    }
+}
