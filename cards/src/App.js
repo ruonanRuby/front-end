@@ -1,26 +1,57 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CardList from "./eventCardList/CardList";
+import CreateEvent from "./createEvent/CreateEvent";
+import SingleCard from './eventCardList/SingleCard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const Pages = {
+  CardList: "list",
+  SingleCard: "details",
+  CreateEvent: "create"
+};
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      route: {
+        current: Pages.CardList,
+        params: {}
+      }
+    };
+  }
+
+  render() {
+    return (
+      <div className = "app">
+        {this._getPage(this.state.route)}
+      </div>
+    )
+  }
+
+  _getPage(route) {
+    switch(route.current) {
+      case Pages.CardList: 
+        return <CardList params = {route.params} goto = {this._goto.bind(this)} />;
+      case Pages.SingleCard: 
+        return <SingleCard params = {route.params} goto = {this._goto.bind(this)} />;
+      case Pages.CreateEvent:
+        return <CreateEvent params = {route.params} goto = {this._goto.bind(this)} />;
+      default: 
+        return <CardList params  = {route.params} />;
+    }
+  }
+
+  _goto(page, params) {
+    this.setState({
+      route: {
+        current: page,
+        params
+      }
+    });
+  }
+
+
 }
 
 export default App;
