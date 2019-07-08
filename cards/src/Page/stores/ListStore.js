@@ -18,7 +18,6 @@ class ListStore extends BaseStore {
     }
 
     onGetListSuccess(state,action) {
-        console.log("aaa" + action.data);
         return Object.assign({}, state, {
             events: action.data
         });

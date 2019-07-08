@@ -1,5 +1,5 @@
 import dataLayer from "../dataLayer";
-console.log("in here");
+
 export const Actions = {
     GetListSuccess: "GetListSuccess"
 };
