@@ -4,9 +4,9 @@ import Input from "antd/lib/input";
 import Button from "antd/lib/button";
 import Radio from "antd/lib/radio";
 import Select from "antd/lib/select";
-import {Pages} from "../App";
+import { Pages } from "../Page";
+import { submitPost } from "../actionCreators/CreatePost"
 import "./index.css";
-import dataLayer from '../dataLayer';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -36,7 +36,7 @@ class CreateEvent extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount() { 
         this.props.form.validateFieldsAndScroll();
     }
 
@@ -44,8 +44,8 @@ class CreateEvent extends React.Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                dataLayer.createEvent(values).then(res => {
-                   this.props.goto(Pages.CardList);
+                submitPost(values, () => {
+                   this.props.history.push(Pages.CardList);
                 });
                 console.log('Received values of from: ', values);
             }
@@ -56,7 +56,7 @@ class CreateEvent extends React.Component {
         console.log(`selected ${value}`);
     }
     backList = () => {
-        this.props.goto(Pages.CardList);
+        this.props.history.push(Pages.CardList);
     }
     render() {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
@@ -69,6 +69,10 @@ class CreateEvent extends React.Component {
             labelCol: { span: 5 },
             wrapperCol: { span: 15 },
         };
+        const style = {
+            marginLeft: '120px',
+            marginBotton: '40px'
+        }
 
         return (
             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -118,10 +122,10 @@ class CreateEvent extends React.Component {
                     )}
                 </Form.Item>
                 <Form.Item>
-                <Button style = {{ marginLeft: '100px'}} className = "cancel" type="primary" htmlType="reset" onClick = {this.backList}>
+                <Button style = {style} className = "cancel" type="primary" htmlType="reset" onClick = {this.backList}>
                         Cancel 
                         </Button>
-                    <Button style = {{ marginLeft: '100px'}} type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
+                    <Button style = {style} type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
                         Post
                         </Button>
                 </Form.Item>
