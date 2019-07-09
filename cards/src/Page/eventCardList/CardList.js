@@ -50,7 +50,7 @@ class CardList extends React.Component {
                 style={{ width: 240 }}
                 cover={<img alt="eventImage" src={require('../../logo.svg')} />}
                 onClick={this._gotoDetails.bind(this, event)}>
-                <Meta title={event.title} description={event.category} />
+                <Meta title={event.title} description={event.category + " "} />
             </Card>
         )
     }

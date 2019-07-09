@@ -7,7 +7,6 @@ const listStore = new ListStore();
 const detailStore = new DetailStore();
 
 const store = createStore( (state,action) => {
-    console.log(state);
     return {
         [listStore.name]: listStore.onActionReceived(state,action),
         [detailStore.name]: detailStore.onActionReceived(state,action)

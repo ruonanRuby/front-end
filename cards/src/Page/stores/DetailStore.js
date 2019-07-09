@@ -1,14 +1,6 @@
 import BaseStore from "./BaseStore";
 
-const Actions = {
-
-}
-
 class DetailStore extends BaseStore {
-    constructor() {
-        super();
-
-    }
 
     get name() {
         return 'detailStore';

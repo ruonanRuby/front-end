@@ -1,40 +1,56 @@
-const Koa = require('koa');
-const logger = require('koa-logger');
-const router = require('koa-router')();
-const koaBody = require('koa-body');
-const cors = require('@koa/cors');
+const Koa = require('koa');             //http middleware framework for NodeJs 
+const router = require('koa-router')();   // route middleware 
+const logger = require('koa-logger');   // development style logger middleware 
+const koaBody = require('koa-body');    // parse http request body
+const cors = require('@koa/cors');       // node-cors 
+const path = require('path');
+const utils = require('./utils');
 const app = new Koa();
 
-const posts = [];
+let posts = [];
+const postFile = path.join(__dirname, './posts.json');
 
-app.use(cors({
-  origin: '*'
-}));
+app.use(cors());
 app.use(logger());
-app.use(koaBody());
-
-router.get('/', list)
-  .get('/post/:id', show)
-  .post('/post', create);
-
+app.use(koaBody()); 
 app.use(router.routes());
 
+router.get('/', list) 
+    .get('/post/:id', show)
+    .post('/post', create);
+
 function list(ctx) {
-  ctx.body = { posts: posts };
+    ctx.body = { posts: posts };
 }
 
 async function show(ctx) {
-  const id = ctx.params.id;
-  const post = posts[id];
-  ctx.body = { post: post };
+    const id = ctx.params.id;
+    const post = posts[id];
+    ctx.body = { post: post };
 }
 
 async function create(ctx) {
   const post = ctx.request.body;
-  const id = posts.push(post) - 1;
   post.created_at = new Date();
-  post.id = id;
-  ctx.body = post;
+  post.id = posts.length;
+  try {
+    console.log("write in here");
+    posts.push(post);
+    const data = await utils.writeJSON(postFile, posts);
+    ctx.body = data;
+  } catch(e) {
+    console.error(e);
+    posts.pop();
+    ctx.body = e;
+  }
 }
 
-app.listen(8000);
+app.listen(8000, 'localhost', async () => {
+  try {
+    const data = await utils.readJSON(postFile);
+    posts = data;
+    console.log("file read successfully");
+  } catch (err) {
+    console.error (err);
+  }
+});
