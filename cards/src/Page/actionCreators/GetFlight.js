@@ -11,6 +11,8 @@ export function getFlight(dispatch) {
                 type: Actions.GetFlightsSuccess,
                 data: res
             });
+            //modify css
+            document.body.setAttribute("data-flights", res.flights.join(" "));
         })
     }, 1000)
 }   

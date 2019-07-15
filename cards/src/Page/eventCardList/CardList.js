@@ -4,7 +4,7 @@ import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 import { loadList } from "../actionCreators/List";
 import { Pages } from "../Page";
-import "../../App.css";
+import "../Page.css";
 
 const { Meta } = Card;
 
@@ -48,6 +48,7 @@ class CardList extends React.Component {
         console.log(flight);
         return (
             <Card
+                className = "card"
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="eventImage" src={require('../../logo.svg')} />}

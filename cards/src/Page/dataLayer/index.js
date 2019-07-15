@@ -4,7 +4,7 @@ const getEvents = () => {
 }
 
 const getFlight = () => {
-    return fetch(`${host}/flights/0`).then(raw => raw.json())
+    return fetch(`${host}/flights/1`).then(raw => raw.json())
 }
 
 const createEvent = (event) => {

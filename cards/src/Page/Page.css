@@ -22,3 +22,7 @@
 .page a.active{
     color: salmon;
 }
+
+body[data-flights~=A] .card {
+    background-color: aquamarine;
+}
