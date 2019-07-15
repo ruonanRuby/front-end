@@ -21,7 +21,7 @@ class BaseStore {
             return this.defaultState;
         }
         if (this.reducers[action.type]) {
-            return this.reducers[action.type](state[this.name],action);
+            return this.reducers[action.type](state[this.name], action);
         }
         return state[this.name];
     }

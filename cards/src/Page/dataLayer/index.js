@@ -3,6 +3,10 @@ const getEvents = () => {
     return fetch(`${host}/`).then(raw => raw.json())
 }
 
+const getFlight = () => {
+    return fetch(`${host}/flights/0`).then(raw => raw.json())
+}
+
 const createEvent = (event) => {
    return fetch(`${host}/post`,{
         method:"POST",
@@ -16,5 +20,6 @@ const createEvent = (event) => {
 
 export default {
     getEvents,
-    createEvent
+    createEvent,
+    getFlight
 }

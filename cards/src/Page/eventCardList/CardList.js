@@ -44,13 +44,15 @@ class CardList extends React.Component {
     }
 
     _getSingleCard(event) {
+        const flight = this.props.flightsStore.flights.flights;
+        console.log(flight);
         return (
             <Card
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="eventImage" src={require('../../logo.svg')} />}
                 onClick={this._gotoDetails.bind(this, event)}>
-                <Meta title={event.title} description={event.category + " "} />
+                <Meta title={event.title} description={flight.includes("A") ? event.category + " " : null} />
             </Card>
         )
     }
